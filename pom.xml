@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.nnww</groupId>
+  <artifactId>mytest</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>household Maven Webapp</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <spring.version>4.3.3.RELEASE</spring.version>
+    <jdk.ver>1.8</jdk.ver>
+    <encoding>UTF-8</encoding>
+    <ver.maven-resources-plugin>2.7</ver.maven-resources-plugin>
+    <ver.maven-compiler-plugin>2.5.1</ver.maven-compiler-plugin>
+    <ver.maven-source-plugin>3.0.0</ver.maven-source-plugin>
+  </properties>
+
+  <dependencies>
+    <!-- 获取系统信息 -->
+    <dependency>
+      <groupId>com.github.oshi</groupId>
+      <artifactId>oshi-core</artifactId>
+      <version>3.9.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>5.4.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna-platform</artifactId>
+      <version>5.4.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.7</version>
+    </dependency>
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>4.1.19</version>
+    </dependency>
+      <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sqs &ndash;&gt;-->
+      <!--<dependency>-->
+          <!--<groupId>com.amazonaws</groupId>-->
+          <!--<artifactId>aws-java-sdk-sqs</artifactId>-->
+          <!--<version>1.11.517</version>-->
+      <!--</dependency>-->
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.10-FINAl</version>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.apache.poi</groupId>-->
+      <!--<artifactId>poi-ooxml</artifactId>-->
+      <!--<version>3.9</version>-->
+    <!--</dependency>-->
+
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.13</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>ooxml-schemas</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.dangdang/elastic-job-lite-core -->
+    <dependency>
+      <groupId>com.dangdang</groupId>
+      <artifactId>elastic-job-lite-core</artifactId>
+      <version>2.1.5</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-all</artifactId>
+      <version>4.1.44.Final</version>
+    </dependency>
+
+  </dependencies>
+
+
+  <build>
+    <finalName>mytest</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>1.3.2</version>
+        <configuration>
+          <verbose>true</verbose>
+          <!-- 代表mybatis generator生成的内容不要覆盖已有的内容 -->
+          <overwrite>true</overwrite>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.21</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${ver.maven-resources-plugin}</version>
+        <configuration>
+          <encoding>${encoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${ver.maven-compiler-plugin}</version>
+        <configuration>
+          <source>${jdk.ver}</source>
+          <target>${jdk.ver}</target>
+          <encoding>${encoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19</version>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${ver.maven-source-plugin}</version>
+        <configuration>
+          <attach>true</attach>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+</project>
